@@ -6,4 +6,6 @@ const users = {
   clients,
 };
 
-module.exports = users;
+// module.exports = users; // * commonJS
+
+export default users; //* ES6
