@@ -1,7 +1,7 @@
 // *ES 6 MODULE
 
-import users from "./users.js";
-console.log(users);
+// import users from "./users.js";
+// console.log(users);
 //*
 
 // const date = new Date();
@@ -34,7 +34,7 @@ console.log(users);
 
 // const fs = require("fs"); // - це як імпорт //* якщо просто імпортуємо з fs - це колбек, якщо з fs/promises - це проміси
 // import fs from "fs";
-import fs from "fs/promises";
+// import fs from "fs/promises";
 // const fs = require("fs").promises
 
 //*callback
@@ -49,13 +49,13 @@ import fs from "fs/promises";
 //   .catch((err) => console.log(err));
 
 //*найчастіше використовують асинхронні функції
-const readFile = async () => {
-  const data = await fs.readFile("./file.txt", "utf8");
-  console.log(data);
-  // console.log(data.toString()) -- приводить буфер  до рядка
-};
+// const readFile = async () => {
+//   const data = await fs.readFile("./file.txt", "utf8");
+//   console.log(data);
+//   // console.log(data.toString()) -- приводить буфер  до рядка
+// };
 
-readFile();
+// readFile();
 
 //! 2 addText
 // const addText = async () => {
@@ -70,9 +70,23 @@ readFile();
 
 //! 3 replaceText
 
-const replaceText = async () => {
-  const resut2 = await fs.writeFile("./file.txt", "Replace all");
-  console.log(resut2);
-};
+// const replaceText = async () => {
+//   const resut2 = await fs.writeFile("./file.txt", "Replace all");
+//   console.log(resut2);
+// };
 
-replaceText();
+// replaceText();
+
+// //? -------------- WORK WITH BOOK -------------
+
+// const books = require("./books");
+
+// const invokeAction = async ({ action, id, title, author }) => {
+//   switch (action) {
+//     case "read":
+//       const allBooks = await books.getAll();
+//       return console.log(allBooks);
+//   }
+// };
+
+// invokeAction({ action: "read" });
