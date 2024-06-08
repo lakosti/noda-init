@@ -1,4 +1,6 @@
 //* МЕТОДИ РОБОТИ З ФАЙЛАМИ
+//! якщо await поставити перед промісом, він поверне результат виконання промісу
+//! append додає після останнього символу
 
 const fs = require("fs/promises");
 const { nanoid } = require("nanoid");
@@ -17,6 +19,9 @@ const getAll = async () => {
 
 //! шукаємо книгу по id
 const getById = async (id) => {
+  // //? приводимо id до рядка,кругом де він використовуєтсья, якщо він написаний числом при використанні yargs
+  // const bookId = String(id);
+
   //* зчитуємо всі книги і шукаємо по  айді
   const books = await getAll();
   const getBookById = books.find((item) => item.id === id);
