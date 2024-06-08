@@ -7,6 +7,7 @@ const path = require("path"); // краще нормалізує шлях (path 
 // __dirname // абсолютний шлях до папки де знаходиться файл
 const booksPath = path.join(__dirname, "books.json");
 
+//! додаємо шлях до книг і зчитуємо їх з файлу (отримуємо)
 const getAll = async () => {
   //*читаємо json як текст
   const data = await fs.readFile(booksPath, "utf-8");
@@ -14,6 +15,7 @@ const getAll = async () => {
   return JSON.parse(data);
 };
 
+//! шукаємо книгу по id
 const getById = async (id) => {
   //* зчитуємо всі книги і шукаємо по  айді
   const books = await getAll();
@@ -21,6 +23,7 @@ const getById = async (id) => {
   return getBookById || null; //* поверни результат або null
 };
 
+//! додаємо книгу
 const addBook = async (book) => {
   //* отрмуємо всі книги щоб додати книгу в кінець
   const books = await getAll();
@@ -34,8 +37,35 @@ const addBook = async (book) => {
   return newBook;
 };
 
+//! оновляємо дані книги
+const updateBookById = async (id, book) => {
+  //* отрмуємо всі книги, і якщо така є, то перезаписуємо на нові дані
+  const books = await getAll();
+  const findIndex = books.findIndex((book) => book.id === id);
+  if (findIndex === -1) {
+    return null;
+  }
+  books[findIndex] = { id, ...book }; //записали нові дані в книгу
+  await fs.writeFile(booksPath, JSON.stringify(books, null, 2));
+  return books[findIndex]; // повернули ці дані
+};
+
+//! видаляємо книгу
+const deleteBookById = async (id) => {
+  const books = await getAll();
+  const findIndex = books.findIndex((book) => book.id === id);
+  if (findIndex === -1) {
+    return null;
+  }
+  const [result] = books.splice(findIndex, 1); // вирізає по індексу
+  await fs.writeFile(booksPath, JSON.stringify(books, null, 2));
+  return result;
+};
+
 module.exports = {
   getAll,
   getById,
   addBook,
+  updateBookById,
+  deleteBookById,
 };
