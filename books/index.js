@@ -28,19 +28,19 @@
 //   return getBookById || null; //* поверни результат або null
 // };
 
-// //! додаємо книгу
-// const addBook = async (book) => {
-//   //* отрмуємо всі книги щоб додати книгу в кінець
-//   const books = await getAll();
-//   const newBook = {
-//     id: nanoid(),
-//     ...book,
-//   };
-//   books.push(newBook);
-//   //*перезаписуємо всі книги і вказуємо шлях і об'єкт приводимо до рядка
-//   await fs.writeFile(booksPath, JSON.stringify(books, null, 2)); // null - символ заміни (тобто ніякі) // 2 - відступи
-//   return newBook;
-// };
+//! додаємо книгу
+const addBook = async (book) => {
+  //* отрмуємо всі книги щоб додати книгу в кінець
+  const books = await getAll();
+  const newBook = {
+    id: nanoid(),
+    ...book,
+  };
+  books.push(newBook);
+  //*перезаписуємо всі книги і вказуємо шлях і об'єкт приводимо до рядка
+  await fs.writeFile(booksPath, JSON.stringify(books, null, 2)); // null - символ заміни (тобто ніякі) // 2 - відступи
+  return newBook;
+};
 
 // //! оновляємо дані книги
 // const updateBookById = async (id, book) => {
